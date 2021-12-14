@@ -54,6 +54,9 @@ However, you will need to run _N_ of these processes in parallel, as you have no
 Lambda@Edge function runs in. This makes things especially frustrating. I wrote some Rust utility in anger, which will
 tail and aggregate multiple regions, but it's not in a place where I feel like I could publish the utility.
 
+Other solutions have used NGINX to rewrite the `Host` header and NGINX actually works. Therefore, I suspect that there
+is some awful CloudFront activity going on between the Lambda@Edge invocation and the actual request to the ECR origin.
+
 ## License
 
 Licensed at your discretion under either 
