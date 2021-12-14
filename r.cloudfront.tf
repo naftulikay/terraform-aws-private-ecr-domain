@@ -3,7 +3,6 @@ resource aws_cloudfront_distribution default {
   retain_on_delete = true
   comment = "ECR Docker Registry front-end."
 
-
   aliases = [var.domain_name]
 
   is_ipv6_enabled = true
@@ -39,7 +38,6 @@ resource aws_cloudfront_distribution default {
     cache_policy_id = aws_cloudfront_cache_policy.default.id
     origin_request_policy_id = aws_cloudfront_origin_request_policy.default.id
 
-    # first thing to do on the way in is to rewrite the host header using our lambda function
     lambda_function_association {
       event_type = "origin-request"
       lambda_arn = aws_lambda_function.host_rewrite.qualified_arn
@@ -73,7 +71,9 @@ resource aws_cloudfront_cache_policy default {
     headers_config {
       header_behavior = "whitelist"
       headers {
-        items = ["Authorization"]
+        items = [
+          "Authorization",
+        ]
       }
     }
     query_strings_config {
