@@ -57,6 +57,21 @@ tail and aggregate multiple regions, but it's not in a place where I feel like I
 Other solutions have used NGINX to rewrite the `Host` header and NGINX actually works. Therefore, I suspect that there
 is some awful CloudFront activity going on between the Lambda@Edge invocation and the actual request to the ECR origin.
 
+## Debugging
+
+Ideally, as recommended by @WhyNotHugo and what I've expected, to debug this setup will likely require setting up a
+MITM proxy between CloudFront and ECR to see exactly what requests are being sent from the edge to the origin and which
+requests are failing. To this end, testing will be done to see what is actually happening to be be able to debug the
+system.
+
+Since `docker login` and `docker pull` both work, but `docker pull` does not, we need to determine what requests
+`docker push` performs in order to see what request is actually failing. Setting up a MITM proxy between CloudFront and
+the origin should give us an adequate idea of what is actually happening.
+
+## Usage
+
+Please see [`USAGE.md`](./USAGE.md) for usage information and description of parameters and outputs for the module.
+
 ## License
 
 Licensed at your discretion under either 
