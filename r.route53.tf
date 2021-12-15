@@ -12,7 +12,7 @@ resource aws_route53_record acm_validations {
   records = [each.value.record]
   ttl = 60
   type = each.value.type
-  zone_id = var.zone_id
+  zone_id = local.zone_id_map[each.value.domain_name]
   allow_overwrite = true
 }
 
@@ -26,4 +26,15 @@ resource aws_route53_record docker {
     zone_id = aws_cloudfront_distribution.default.hosted_zone_id
     evaluate_target_health = true
   }
+}
+
+resource aws_route53_record additional {
+  count = length(var.additional_domain_names)
+  # get the keys from the map, which are domain names, take the specific one we want via the index, and then take the
+  # first value out of the split, which is the short domain name
+  name = split('.' keys(var.additional_domain_names)[count.index])[0]
+  type = "CNAME"
+  ttl = var.additional_domain_name_ttl
+  records = [aws_route53_record.docker.fqdn]
+  zone_id = values(var.additional_domain_names)[count.index]
 }

@@ -1,6 +1,6 @@
 resource aws_acm_certificate default {
   domain_name = var.domain_name
-  subject_alternative_names = []
+  subject_alternative_names = keys(var.additional_domain_names)
   validation_method = "DNS"
 
   tags = {

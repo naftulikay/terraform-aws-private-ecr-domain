@@ -3,7 +3,7 @@ resource aws_cloudfront_distribution default {
   retain_on_delete = true
   comment = "ECR Docker Registry front-end."
 
-  aliases = [var.domain_name]
+  aliases = concat([var.domain_name], keys(var.additional_domain_names))
 
   is_ipv6_enabled = true
   http_version = "http2"
