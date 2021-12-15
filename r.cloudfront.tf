@@ -91,7 +91,7 @@ resource aws_cloudfront_origin_request_policy default {
     cookie_behavior = "all"
   }
   headers_config {
-    header_behavior = "allViewer"
+    header_behavior = "allViewerAndWhitelistCloudFront"
   }
   query_strings_config {
     query_string_behavior = "all"
