@@ -10,7 +10,7 @@ Please help.
 ## Background
 
 Apparently, all that is needed to make things work is to simply rewrite the `Host` header on the edge to match the
-ECR domain name, which is `${AWS_ACCOUNT_ID}.dkr.ecr.us-east-1.amazonaws.com`. To this end, a Lambda@Edge function in
+ECR domain name, which is `${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_REGION}.amazonaws.com`. To this end, a Lambda@Edge function in
 NodeJS is included, and it does exactly this.
 
 However, certain operations still fail, perhaps due to some strange Lambda@Edge behavior, or CloudFront caching
