@@ -29,12 +29,11 @@ resource aws_route53_record docker {
 }
 
 resource aws_route53_record additional {
-  count = length(var.additional_domain_names)
-  # get the keys from the map, which are domain names, take the specific one we want via the index, and then take the
-  # first value out of the split, which is the short domain name
-  name = split(".", keys(var.additional_domain_names)[count.index])[0]
+  for_each = var.additional_domain_names
+  # get the keys from the map, which are domain names, and the values, which are zone ids
+  name = split(".", each.key)[0]
   type = "CNAME"
   ttl = var.additional_domain_name_ttl
   records = [aws_route53_record.docker.fqdn]
-  zone_id = values(var.additional_domain_names)[count.index]
+  zone_id = each.value
 }

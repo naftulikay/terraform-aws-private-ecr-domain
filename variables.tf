@@ -27,7 +27,9 @@ variable additional_domain_names {
     Additional list of domain names to associate with the ACM certificate, CloudFront, and Route53.
 
     This value is a map with string keys representing domain names to a string holding the Route53 zone id for the
-    record.
+    record. If you require a _nested_ domain, such as `docker.origin.mycompany.com`, pass a zone ID for the sub hosted
+    zone, e.g. for `origin.mycompany.com`, otherwise this will break as it takes the first name in the FQDN, e.g.
+    `docker`.
 
     These records will be created as CNAMEs pointing to the main alias record.
   EOF
