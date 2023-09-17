@@ -1,4 +1,4 @@
-# terraform-aws-private-ecr-domain
+# terraform-aws-private-ecr-domain [![GitHub Actions][actions.svg]][actions]
 
 An example module hoping to be [a drop-in solution for aws/containers-roadmap#299][aws-containers-roadmap-299].
 
@@ -80,3 +80,5 @@ Licensed at your discretion under either
  - [MIT License](./LICENSE-MIT)
 
  [aws-containers-roadmap-299]: https://github.com/aws/containers-roadmap/issues/299
+ [actions]: https://github.com/naftulikay/terraform-aws-private-ecr-domain/actions/workflows/terraform.yml
+ [actions.svg]: https://github.com/naftulikay/terraform-aws-private-ecr-domain/actions/workflows/terraform.yml/badge.svg
