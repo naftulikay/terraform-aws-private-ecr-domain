@@ -7,7 +7,7 @@ variable domain_name {
 }
 
 variable additional_domain_names {
-  type =  map(string, string)
+  type =  map(string)
   default = {}
   description = <<-EOF
     Additional list of domain names to associate with the ACM certificate, CloudFront, and Route53.
