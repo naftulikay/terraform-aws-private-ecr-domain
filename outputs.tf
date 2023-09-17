@@ -34,6 +34,23 @@ output domain_validation_options {
   EOF
 }
 
+output ecr_origin_fqdn {
+  value = local.ecr_registry_fqdn
+  description = <<-EOF
+    The AWS-provided ECR private registry FQDN.
+
+    NOTE: This is not going to be the same as your chosen alias FQDN, rather it is the long-form AWS ECR private
+    registry FQDN.
+  EOF
+}
+
+output ecr_registry_region {
+  value = var.ecr_registry_region
+  description = <<-EOF
+    The region in which the private registry lives.
+  EOF
+}
+
 output lambda_function_arn {
   value = aws_lambda_function.host_rewrite.arn
   description = <<-EOF

@@ -6,15 +6,15 @@ resource aws_cloudfront_distribution default {
   aliases = concat([var.domain_name], keys(var.additional_domain_names))
 
   is_ipv6_enabled = true
-  http_version = "http2"
+  http_version = "http2and3"
 
   default_root_object = "index.html"
 
   price_class = "PriceClass_100"
 
   origin {
-    origin_id = "ecr-us-east-1"
-    domain_name = local.ecr_us_east_1
+    origin_id = "ecr-${var.ecr_registry_region}"
+    domain_name = local.ecr_registry_fqdn
 
     custom_origin_config {
       http_port = 80
@@ -25,7 +25,7 @@ resource aws_cloudfront_distribution default {
   }
 
   default_cache_behavior {
-    target_origin_id = "ecr-us-east-1"
+    target_origin_id = "ecr-${var.ecr_registry_region}"
 
     min_ttl = 0
     default_ttl = 0

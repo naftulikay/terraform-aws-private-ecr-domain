@@ -1,8 +1,22 @@
+variable aws_account_id {
+  description = <<-EOF
+    The AWS account id we are operating in, required for generating the ECR private registry hostname.
+  EOF
+}
+
 variable domain_name {
   description = <<-EOF
     The custom FQDN to use for ACM and CloudFront as your entry-point to private ECR.
 
     Example: ecr.mycompany.com
+  EOF
+}
+
+variable ecr_registry_region {
+  type = string
+  default = "us-east-1"
+  description = <<-EOF
+    The AWS region in which your private ECR registry lives.
   EOF
 }
 
