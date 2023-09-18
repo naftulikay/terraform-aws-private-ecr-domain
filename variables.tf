@@ -48,3 +48,13 @@ variable zone_id {
     The Route 53 zone ID in which to create the ECR alias record.
   EOF
 }
+
+variable lambda_provider {
+  default = null
+  description = <<-EOF
+    An AWS provider name which is in us-east-1.
+
+    Lambda functions _must_ live in us-east-1. If you are running in a different region, setup another provider and pass
+    its name here.
+  EOF
+}
