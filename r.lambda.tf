@@ -2,7 +2,7 @@
 #      would be possible to do this in Cloudfront, but Cloudfront does not allow rewriting the `Host` header. Therefore,
 #      we have a Lambda@Edge function which simply overwrites the `Host` header for us.
 resource aws_lambda_function host_rewrite {
-  provider = aws.us-east-1
+  provider = aws.us_east_1
 
   function_name = "ecr-docker-host-rewrite"
   description = "Rewrites the Host header for incoming requests to ECR to allow custom domains."

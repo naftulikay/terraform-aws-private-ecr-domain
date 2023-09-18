@@ -1,4 +1,6 @@
 resource aws_cloudfront_distribution default {
+  provider = aws.default
+
   enabled = true
   retain_on_delete = true
   comment = "ECR Docker Registry front-end."
@@ -61,6 +63,8 @@ resource aws_cloudfront_distribution default {
 }
 
 resource aws_cloudfront_cache_policy default {
+  provider = aws.default
+
   name = "ecr"
   min_ttl = 1
 

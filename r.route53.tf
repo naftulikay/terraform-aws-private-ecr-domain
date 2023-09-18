@@ -1,4 +1,6 @@
 resource aws_route53_record acm_validations {
+  provider = aws.default
+
   for_each = {
     for dvo in aws_acm_certificate.default.domain_validation_options : dvo.domain_name => {
       domain_name = dvo.domain_name
@@ -17,6 +19,8 @@ resource aws_route53_record acm_validations {
 }
 
 resource aws_route53_record docker {
+  provider = aws.default
+
   name = local.domain_name_short
   type = "A"
   zone_id = var.zone_id
@@ -29,6 +33,8 @@ resource aws_route53_record docker {
 }
 
 resource aws_route53_record additional {
+  provider = aws.default
+
   for_each = var.additional_domain_names
   # get the keys from the map, which are domain names, and the values, which are zone ids
   name = each.key

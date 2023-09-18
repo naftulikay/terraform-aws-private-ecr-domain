@@ -1,8 +1,9 @@
-provider aws {}
+provider aws {
+  alias = "default"
+}
 
 provider aws {
-  alias = "us-east-1"
-  region = "us-east-1"
+  alias = "us_east_1"
 }
 
 locals {
