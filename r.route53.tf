@@ -31,7 +31,7 @@ resource aws_route53_record docker {
 resource aws_route53_record additional {
   for_each = var.additional_domain_names
   # get the keys from the map, which are domain names, and the values, which are zone ids
-  name = split(".", each.key)[0]
+  name = each.key
   type = "CNAME"
   ttl = var.additional_domain_name_ttl
   records = [aws_route53_record.docker.fqdn]

@@ -36,7 +36,7 @@ resource aws_cloudfront_distribution default {
     viewer_protocol_policy = "redirect-to-https"
 
     cache_policy_id = aws_cloudfront_cache_policy.default.id
-    origin_request_policy_id = aws_cloudfront_origin_request_policy.default.id
+    origin_request_policy_id = data.aws_cloudfront_origin_request_policy.default.id
 
     lambda_function_association {
       event_type = "origin-request"
@@ -82,18 +82,5 @@ resource aws_cloudfront_cache_policy default {
 
     enable_accept_encoding_brotli = true
     enable_accept_encoding_gzip = true
-  }
-}
-
-resource aws_cloudfront_origin_request_policy default {
-  name = "ecr"
-  cookies_config {
-    cookie_behavior = "all"
-  }
-  headers_config {
-    header_behavior = "allViewerAndWhitelistCloudFront"
-  }
-  query_strings_config {
-    query_string_behavior = "all"
   }
 }

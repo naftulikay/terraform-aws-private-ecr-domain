@@ -21,7 +21,7 @@ output cloudfront_distribution_arn {
 }
 
 output cloudfront_origin_request_policy_id {
-  value = aws_cloudfront_origin_request_policy.default.id
+  value = data.aws_cloudfront_origin_request_policy.default.id
   description = <<-EOF
     The ID for the CloudFront origin request policy.
   EOF
