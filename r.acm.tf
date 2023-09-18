@@ -1,5 +1,5 @@
 resource aws_acm_certificate default {
-  provider = aws.default
+  provider = aws.us_east_1
 
   domain_name = var.domain_name
   subject_alternative_names = keys(var.additional_domain_names)
@@ -11,7 +11,7 @@ resource aws_acm_certificate default {
 }
 
 resource aws_acm_certificate_validation default {
-  provider = aws.default
+  provider = aws.us_east_1
 
   certificate_arn = aws_acm_certificate.default.arn
   depends_on = [
